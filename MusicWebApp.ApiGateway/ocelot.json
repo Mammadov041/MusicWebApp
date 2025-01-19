@@ -1,0 +1,112 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/identity/login/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identityservice",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/l",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/identity/register/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "identityservice",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/r",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/music/upload-music/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "musicservice",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/um",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/music/all-musics/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "musicservice",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/am",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/music/liked-musics/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "musicservice",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/lm",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/music/like-music/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "musicservice",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/lm",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/music/unlike-music/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "musicservice",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/unm",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/music/comment-music/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "musicservice",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/cm",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/music/music-comments/",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "musicservice",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/mc",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+  ]
+}

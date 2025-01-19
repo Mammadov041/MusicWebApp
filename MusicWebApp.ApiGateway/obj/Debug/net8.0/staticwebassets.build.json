@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "+PntecdX5LdY8cHKDpt6P8rm8svrrJXJFZRKHRGIGbQ=",
+  "Source": "MusicWebApp.ApiGateway",
+  "BasePath": "_content/MusicWebApp.ApiGateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

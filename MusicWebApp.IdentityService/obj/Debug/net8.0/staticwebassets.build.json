@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Mof4OHQPd3nANC+K3y9xgLaRc00wnE9GXchMIFN+HXY=",
+  "Source": "MusicWebApp.IdentityService",
+  "BasePath": "_content/MusicWebApp.IdentityService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

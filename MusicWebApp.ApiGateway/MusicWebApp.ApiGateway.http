@@ -1,0 +1,6 @@
+@MusicWebApp.ApiGateway_HostAddress = http://localhost:5262
+
+GET {{MusicWebApp.ApiGateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

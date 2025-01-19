@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "QwaS2hcg44/5RW3is4H/+txty6w+cEH2x2oXZ4NTqk0=",
+  "Source": "MusicWebApp.MusicService",
+  "BasePath": "_content/MusicWebApp.MusicService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

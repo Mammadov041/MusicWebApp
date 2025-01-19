@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\MusicWebApp.IdentityService.props" />
+</Project>

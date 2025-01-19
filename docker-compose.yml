@@ -1,0 +1,99 @@
+version: '3.8'
+
+networks:
+  mynetwork:
+    driver: bridge
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql1
+    hostname: sql1
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"                       # Accept the SQL Server EULA
+      MSSQL_SA_PASSWORD: "A&VeryComplex123Password" # Strong SA password
+    networks:
+      - mynetwork
+    healthcheck:
+      test: ["CMD", "sqlcmd", "-Q", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  redis:
+    image: redis
+    container_name: redis-server
+    ports:
+      - "6379:6379"
+    networks: 
+      - mynetwork
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-server
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+    networks: 
+       - mynetwork
+
+  apigateway:
+    image: musicwebapp.apigateway:dev
+    build:
+      context: .
+      dockerfile: MusicWebApp.ApiGateway/Dockerfile
+    ports:
+      - "5001:8080" 
+    networks:
+      - mynetwork
+    depends_on:
+      - musicservice
+      - identityservice
+
+  musicservice:
+    depends_on:
+      - sqlserver
+    image: musicwebapp.musicservice:dev
+    build:
+      context: .
+      dockerfile: MusicWebApp.MusicService/Dockerfile
+    ports:
+      - "5002:8080" 
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sql1,1433;Database=MusicServiceDB;User Id=sa;Password=A&VeryComplex123Password;TrustServerCertificate=True;Encrypt=True;
+    networks:
+      - mynetwork 
+
+  identityservice:
+    depends_on: 
+      - sqlserver
+    image: musicwebapp.identityservice:dev
+    build:
+      context: .
+      dockerfile: MusicWebApp.IdentityService/Dockerfile
+    ports:
+      - "5013:8080" 
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sql1,1433;Database=IdentityServiceDB;User Id=sa;Password=A&VeryComplex123Password;TrustServerCertificate=True;Encrypt=True;
+    networks:
+      - mynetwork
+  reactapp:
+    depends_on:
+      - sqlserver
+      - musicservice
+      - identityservice
+    build:
+      context: ./musicwebapp.uiapp 
+      dockerfile: Dockerfile  # Use the Dockerfile you created for the React app
+    ports:
+      - "5173:5173"  # Exposing React app's dev server on port 3000
+    networks:
+      - mynetwork
